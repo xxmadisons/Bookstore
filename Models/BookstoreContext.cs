@@ -1,4 +1,5 @@
 ﻿using System;
+using Bookstore.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -20,6 +21,7 @@ namespace Bookstore.Models
         }
 
         public DbSet<Book> Books { get; set; }
+        public DbSet<Buy> Buy { get; set; }
 
        
     }
