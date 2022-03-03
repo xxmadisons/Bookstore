@@ -6,7 +6,9 @@
 <h2>Check out</h2>
 <p>Please enter your information.</p>
 
-<form method="post">
+<form method="post"asp-controller="Buy" asp-action="Checkout">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
 
     <h4>Ship To</h4>
     <div class="form-group">

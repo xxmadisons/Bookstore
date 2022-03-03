@@ -15,22 +15,22 @@ namespace Bookstore.Models.ViewModels
 
         [BindNever]
         public ICollection<BasketLineItem> Lines { get; set; }
-        [Required(ErrorMessage = "Please enter name:")]
+        [Required(ErrorMessage = "Please enter name")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Please enter Address:")]
+        [Required(ErrorMessage = "Please enter Address")]
         public string AddressLine1 { get; set; }
         public string AddressLine2 { get; set; }
 
-        [Required(ErrorMessage = "Please enter city:")]
+        [Required(ErrorMessage = "Please enter city")]
         public string City { get; set; }
 
-        [Required(ErrorMessage = "Please enter state:")]
+        [Required(ErrorMessage = "Please enter state")]
         public string State { get; set; }
 
-        [Required(ErrorMessage = "Please enter Zipcode:")]
+        [Required(ErrorMessage = "Please enter Zipcode")]
         public string Zipcode { get; set; }
 
-        [Required(ErrorMessage = "Please enter Country:")]
+        [Required(ErrorMessage = "Please enter Country")]
         public string Country { get; set; }
 
     }

@@ -22,7 +22,6 @@ namespace Bookstore.Models
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Buy> Buy { get; set; }
-
-       
+        public object Buys { get; internal set; }
     }
 }
