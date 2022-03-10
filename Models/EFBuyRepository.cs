@@ -16,7 +16,7 @@ namespace Bookstore.Models
         }
         public IQueryable<Buy> Buys => context.Buy.Include(x => x.Lines).ThenInclude(x => x.Book);
 
-        public IQueryable<Buy> Buy { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        IQueryable<Buy> IBuyRepository.Buy { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void SaveBuy(Buy buy)
         {
@@ -27,6 +27,11 @@ namespace Bookstore.Models
             }
 
             context.SaveChanges();
+        }
+
+        void IBuyRepository.SaveBuy(Buy buy)
+        {
+            throw new NotImplementedException();
         }
     }
 }
