@@ -1,0 +1,45 @@
+﻿@page "/admin/buy"
+@inherits OwningComponentBase<IBuyRepository>
+
+<BuyTable TableTitle="Uncollected Buys" Buy="UncollectedBuys"
+          ButtonLabel="Collected" BuySelected="CollectBuys"></BuyTable>
+
+<BuyTable TableTitle="Collected Buys" Buy="CollectedBuys"
+          ButtonLabel="Reset" BuySelected="ResetBuys"></BuyTable>
+
+<button class="btn btn-info" @onclick="@(x => UpdateData())">Refresh Data</button>
+
+
+
+
+@code {
+    public IBuyRepository repo => Service;
+
+    public IEnumerable<Models.ViewModels.Buy> AllBuys { get; set; }
+    public IEnumerable<Models.ViewModels.Buy> UncollectedBuys { get; set; }
+    public IEnumerable<Models.ViewModels.Buy> CollectedBuys { get; set; }
+
+    protected async override Task OnInitialAsync()
+    {
+        await UpdateData();
+    }
+
+    public async Task UpdateData()
+    {
+        AllBuys = await repo.Buy.ToListAsync();
+        UncollectedBuys = AllBuys.Where(x => !x.BuyReceived);
+        CollectedBuys = AllBuys.Where(x => x.BuyReceived);
+    }
+
+
+    public void CollectBuys(int id) => UpdateBuy(id, true);
+    public void ResetBuys(int id) => UpdateBuys(id, false);
+
+    private void UpdateBuys(int id, bool bought)
+    {
+        Buy b = repo.Buy.FirstOrDefault(x => x.BuyId == id);
+        b.BuyReceived = bought;
+        repo.SaveBuy(b);
+    }
+
+}

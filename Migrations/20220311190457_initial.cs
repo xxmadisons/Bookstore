@@ -2,7 +2,7 @@
 
 namespace Bookstore.Migrations
 {
-    public partial class Final : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,7 +38,8 @@ namespace Bookstore.Migrations
                     City = table.Column<string>(nullable: false),
                     State = table.Column<string>(nullable: false),
                     Zipcode = table.Column<string>(nullable: false),
-                    Country = table.Column<string>(nullable: false)
+                    Country = table.Column<string>(nullable: false),
+                    BuyReceived = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -1,0 +1,62 @@
+﻿<table class="table table-sm table-striped table-bordered"></table>
+
+    <thead>
+        <tr>
+            <th colspan="5" class="text-center">@TableTitle</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Buy.Count() > 0)
+            {
+                @foreach (Models.ViewModels.Buy b in Buy)
+                {
+                    <tr>
+                        <td>@b.Name</td>
+                        <td>@b.Zipcode</td>
+                        <th>Project</th>
+                        <th>Quantity</th>
+
+                        <td>
+                            <button class="btn btn-sm btn-danger" @onlick "@(x => BuySelected.Invoke)Async(b.BuyId))">
+                                @ButtonLabel
+                            </button>
+                        </td>
+                    </tr>
+
+                    @foreach (BasketLineItem bli in b.Lines)
+                    {
+                        <tr>
+                            <td colspan="2"></td>
+                            <td>@bli.Book.Title</td>
+                            <td>@bli.Quantity</td>
+                        </tr>
+                    }
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">No Orders</td>
+                </tr>
+            }
+    </tbody>
+
+
+
+@code {
+
+    [Parameter]
+    public string TableTitle { get; set; } = "Buy";
+
+    [Parameter]
+    public IEnumerable<Buy> Buy { get; set; }
+
+    [Parameter]
+    public string ButtonLabel { get; set; } = "Collected";
+
+    [Parameter]
+    public EventCallback<int> BuySelected { get; set; }
+
+
+}

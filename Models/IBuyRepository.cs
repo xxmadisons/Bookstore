@@ -8,8 +8,8 @@ namespace Bookstore.Models
 {
     public interface IBuyRepository
     {
-       public IQueryable<Buy> Buy { get; set; }
+       IQueryable<Buy> Buy { get; set; }
 
-        public void SaveBuy(Buy buy);
+        void SaveBuy(Buy buy);
     }
 }

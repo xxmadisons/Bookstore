@@ -88,6 +88,9 @@ namespace Bookstore.Migrations
                     b.Property<string>("AddressLine2")
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("BuyReceived")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("TEXT");
