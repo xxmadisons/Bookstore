@@ -38,11 +38,10 @@ namespace Bookstore.Models
             Items.RemoveAll(x => x.Book.BookId == book.BookId);
         }
 
-        public virtual void ClearBasket()
+        public virtual void ClearBasket ()
         {
             Items.Clear();
         }
-
 
         public double CalculateTotal()
         {

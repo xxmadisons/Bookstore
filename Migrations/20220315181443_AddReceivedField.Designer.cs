@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bookstore.Migrations
 {
     [DbContext(typeof(BookstoreContext))]
-    [Migration("20220311190457_initial")]
-    partial class initial
+    [Migration("20220315181443_AddReceivedField")]
+    partial class AddReceivedField
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -77,7 +77,7 @@ namespace Bookstore.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("Bookstore.Models.ViewModels.Buy", b =>
+            modelBuilder.Entity("Bookstore.Models.Buy", b =>
                 {
                     b.Property<int>("BuyId")
                         .ValueGeneratedOnAdd()
@@ -124,7 +124,7 @@ namespace Bookstore.Migrations
                         .WithMany()
                         .HasForeignKey("BookId");
 
-                    b.HasOne("Bookstore.Models.ViewModels.Buy", null)
+                    b.HasOne("Bookstore.Models.Buy", null)
                         .WithMany("Lines")
                         .HasForeignKey("BuyId");
                 });

@@ -1,5 +1,4 @@
 ﻿using Bookstore.Models;
-using Bookstore.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,14 +9,17 @@ namespace Bookstore.Controllers
 {
     public class BuyController : Controller
     {
+
         private IBuyRepository repo { get; set; }
         private Basket basket { get; set; }
+
         public BuyController (IBuyRepository temp, Basket b)
         {
             repo = temp;
             basket = b;
         }
 
+        [HttpGet]
         public IActionResult Checkout()
         {
             return View(new Buy());
@@ -28,7 +30,7 @@ namespace Bookstore.Controllers
         {
             if (basket.Items.Count() == 0)
             {
-                ModelState.AddModelError("", "Your basket is empty.");
+                ModelState.AddModelError("", "Sorry, your basket is empty.");
             }
 
             if (ModelState.IsValid)
@@ -39,11 +41,12 @@ namespace Bookstore.Controllers
 
                 return RedirectToPage("/BuyCompleted");
             }
-
             else
             {
                 return View();
             }
+
+
         }
     }
 }
